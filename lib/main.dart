@@ -72,6 +72,31 @@ class ProfileInterestsApp extends StatelessWidget {
                             Text('+123 456 7890'),
                           ],
                         ),
+                        const SizedBox(height: 18),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blue,
+                                  foregroundColor: Colors.white,
+                                ),
+                                child: const Text('Follow'),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: () {},
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: const Color(0xFF374151),
+                                ),
+                                child: const Text('Message'),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
