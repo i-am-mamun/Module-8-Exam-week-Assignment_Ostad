@@ -11,11 +11,23 @@ class ProfileInterestsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0671DF)),
+        scaffoldBackgroundColor: const Color(0xFFF8F9FA),
+        cardTheme: const CardThemeData(
+          color: Colors.white,
+          elevation: 1,
+          margin: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
+      ),
       home: Scaffold(
-        backgroundColor: const Color(0xFFF8F9FA),
         body: SafeArea(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             child: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 560),
@@ -23,7 +35,7 @@ class ProfileInterestsApp extends StatelessWidget {
                   children: [
                     Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(24),
+                        padding: const EdgeInsets.all(20),
                         child: Column(
                           children: [
                             ClipOval(
@@ -32,6 +44,7 @@ class ProfileInterestsApp extends StatelessWidget {
                                 width: 120,
                                 height: 120,
                                 fit: BoxFit.cover,
+                                errorBuilder: _imageErrorBuilder,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -83,8 +96,12 @@ class ProfileInterestsApp extends StatelessWidget {
                                   child: ElevatedButton(
                                     onPressed: () {},
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.blue,
+                                      backgroundColor: const Color(0xFF0671DF),
                                       foregroundColor: Colors.white,
+                                      minimumSize: const Size.fromHeight(40),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
                                     ),
                                     child: const Text('Follow'),
                                   ),
@@ -95,6 +112,13 @@ class ProfileInterestsApp extends StatelessWidget {
                                     onPressed: () {},
                                     style: OutlinedButton.styleFrom(
                                       foregroundColor: const Color(0xFF374151),
+                                      side: const BorderSide(
+                                        color: Color(0xFFD1D5DB),
+                                      ),
+                                      minimumSize: const Size.fromHeight(40),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
                                     ),
                                     child: const Text('Message'),
                                   ),
@@ -179,6 +203,7 @@ class _InterestCard extends StatelessWidget {
             width: double.infinity,
             height: 100,
             fit: BoxFit.cover,
+            errorBuilder: _imageErrorBuilder,
           ),
           Padding(
             padding: const EdgeInsets.all(12),
@@ -201,7 +226,11 @@ class _InterestCard extends StatelessWidget {
                     onPressed: () {},
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xFFF1F2F4),
-                      foregroundColor: Colors.blue,
+                      foregroundColor: const Color(0xFF0671DF),
+                      minimumSize: const Size.fromHeight(36),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                     ),
                     child: const Text('View More'),
                   ),
@@ -213,4 +242,16 @@ class _InterestCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _imageErrorBuilder(
+  BuildContext context,
+  Object error,
+  StackTrace? stackTrace,
+) {
+  return Container(
+    color: const Color(0xFFE5E7EB),
+    alignment: Alignment.center,
+    child: const Icon(Icons.image_not_supported_outlined, color: Colors.grey),
+  );
 }
