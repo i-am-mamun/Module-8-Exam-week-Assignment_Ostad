@@ -53,6 +53,25 @@ class ProfileInterestsApp extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Color(0xFF4B5563)),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: Divider(height: 1),
+                        ),
+                        const Row(
+                          children: [
+                            Icon(Icons.mail, size: 18, color: Color(0xFF374151)),
+                            SizedBox(width: 10),
+                            Text('john.doe@example.com'),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        const Row(
+                          children: [
+                            Icon(Icons.phone, size: 18, color: Color(0xFF374151)),
+                            SizedBox(width: 10),
+                            Text('+123 456 7890'),
+                          ],
+                        ),
                       ],
                     ),
                   ),
