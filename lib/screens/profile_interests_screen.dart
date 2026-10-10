@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/interest.dart';
+import 'interest_card.dart';
 
 class ProfileInterestsScreen extends StatelessWidget {
   const ProfileInterestsScreen({super.key});
@@ -43,7 +44,11 @@ class ProfileInterestsScreen extends StatelessWidget {
                           index++) ...[
                         if (index > 0) const SizedBox(width: 12),
                         Expanded(
-                          child: _InterestCard(interest: Interest.items[index]),
+                          child: InterestCard(
+                            title: Interest.items[index].title,
+                            subtitle: Interest.items[index].subtitle,
+                            imagePath: Interest.items[index].imagePath,
+                          ),
                         ),
                       ],
                     ],
@@ -69,8 +74,8 @@ class _ProfileCard extends StatelessWidget {
         child: Column(
           children: [
             ClipOval(
-              child: Image.network(
-                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=320&h=320&fit=crop&crop=faces',
+              child: Image.asset(
+                'assets/images/profile.jpg',
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -150,64 +155,6 @@ class _ProfileCard extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _InterestCard extends StatelessWidget {
-  const _InterestCard({required this.interest});
-
-  final Interest interest;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            interest.imageUrl,
-            width: double.infinity,
-            height: 100,
-            fit: BoxFit.cover,
-            errorBuilder: _imageErrorBuilder,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  interest.title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  interest.subtitle,
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color(0xFFF1F2F4),
-                      foregroundColor: const Color(0xFF0671DF),
-                      minimumSize: const Size.fromHeight(36),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                    ),
-                    child: const Text('View More'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
