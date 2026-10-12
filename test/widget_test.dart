@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' show Card, Image, Size;
+import 'package:flutter/material.dart'
+    show Card, ElevatedButton, Image, OutlinedButton, Size, TextButton;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:profile_interests/main.dart';
 import 'package:profile_interests/screens/interest_card.dart';
@@ -38,6 +39,18 @@ void main() {
     expect(travelCard.width, closeTo(191, 2));
     expect(photographyCard.width, closeTo(191, 2));
     expect(photographyCard.left - travelCard.right, closeTo(8, 1));
+    expect(
+      tester.getRect(find.widgetWithText(ElevatedButton, 'Follow')).height,
+      30,
+    );
+    expect(
+      tester.getRect(find.widgetWithText(OutlinedButton, 'Message')).height,
+      30,
+    );
+    expect(
+      tester.getRect(find.widgetWithText(TextButton, 'View More').first).height,
+      28,
+    );
     final travelImage = tester.getRect(
       find.descendant(
         of: find.byType(InterestCard).first,

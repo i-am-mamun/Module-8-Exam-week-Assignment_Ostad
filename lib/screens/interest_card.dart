@@ -57,14 +57,18 @@ class InterestCard extends StatelessWidget {
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xFFF1F2F4),
                       foregroundColor: const Color(0xFF0671DF),
-                      minimumSize: const Size.fromHeight(28),
+                      minimumSize: const Size.fromHeight(36),
+                      visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    child: const Text('View More'),
+                    child: const Text(
+                      'View More',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                 ),
               ],

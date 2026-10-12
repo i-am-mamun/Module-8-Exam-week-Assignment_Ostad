@@ -192,14 +192,18 @@ class _ProfileCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0671DF),
                         foregroundColor: Colors.white,
-                        minimumSize: const Size.fromHeight(30),
+                        minimumSize: const Size.fromHeight(38),
+                        visualDensity: VisualDensity.compact,
                         padding: EdgeInsets.zero,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Text('Follow'),
+                      child: const Text(
+                        'Follow',
+                        style: TextStyle(fontSize: 14),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -209,14 +213,18 @@ class _ProfileCard extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                         foregroundColor: const Color(0xFF374151),
                         side: const BorderSide(color: Color(0xFFD1D5DB)),
-                        minimumSize: const Size.fromHeight(30),
+                        minimumSize: const Size.fromHeight(38),
+                        visualDensity: VisualDensity.compact,
                         padding: EdgeInsets.zero,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      child: const Text('Message'),
+                      child: const Text(
+                        'Message',
+                        style: TextStyle(fontSize: 14),
+                      ),
                     ),
                   ),
                 ],
