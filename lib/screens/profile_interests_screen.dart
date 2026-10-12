@@ -74,8 +74,8 @@ class _ProfileCard extends StatelessWidget {
         child: Column(
           children: [
             ClipOval(
-              child: Image.asset(
-                'assets/images/profile.jpg',
+              child: Image.network(
+                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=320&h=320&fit=crop&crop=faces',
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
