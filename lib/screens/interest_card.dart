@@ -20,28 +20,31 @@ class InterestCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+            padding: const EdgeInsets.fromLTRB(8, 6, 8, 0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 imagePath,
                 width: double.infinity,
-                height: 100,
+                height: 82,
                 fit: BoxFit.cover,
                 errorBuilder: _imageErrorBuilder,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
                 Text(
                   subtitle,
                   style: const TextStyle(color: Colors.grey, fontSize: 12),
@@ -54,7 +57,9 @@ class InterestCard extends StatelessWidget {
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xFFF1F2F4),
                       foregroundColor: const Color(0xFF0671DF),
-                      minimumSize: const Size.fromHeight(36),
+                      minimumSize: const Size.fromHeight(28),
+                      padding: EdgeInsets.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),

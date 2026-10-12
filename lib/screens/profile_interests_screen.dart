@@ -10,53 +10,90 @@ class ProfileInterestsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
-              child: Column(
-                children: [
-                  const _ProfileCard(),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const Expanded(child: Divider()),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Text(
-                          'Interests',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const Expanded(child: Divider()),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (var index = 0;
-                          index < Interest.items.length;
-                          index++) ...[
-                        if (index > 0) const SizedBox(width: 12),
-                        Expanded(
-                          child: InterestCard(
-                            title: Interest.items[index].title,
-                            subtitle: Interest.items[index].subtitle,
-                            imagePath: Interest.items[index].imagePath,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isCompact = constraints.maxWidth < 380;
+
+            return SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 960),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        const _ProfileCard(),
+                        const SizedBox(height: 16),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const Expanded(child: Divider()),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                    ),
+                                    child: Text(
+                                      'Interests',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  const Expanded(child: Divider()),
+                                ],
+                              ),
+                              const SizedBox(height: 12),
+                              Flex(
+                                direction:
+                                    isCompact ? Axis.vertical : Axis.horizontal,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  for (var index = 0;
+                                      index < Interest.items.length;
+                                      index++) ...[
+                                    if (index > 0)
+                                      SizedBox(
+                                        width: isCompact ? 0 : 8,
+                                        height: isCompact ? 12 : 0,
+                                      ),
+                                    if (isCompact)
+                                      InterestCard(
+                                        title: Interest.items[index].title,
+                                        subtitle:
+                                            Interest.items[index].subtitle,
+                                        imagePath:
+                                            Interest.items[index].imagePath,
+                                      )
+                                    else
+                                      Expanded(
+                                        child: InterestCard(
+                                          title: Interest.items[index].title,
+                                          subtitle:
+                                              Interest.items[index].subtitle,
+                                          imagePath:
+                                              Interest.items[index].imagePath,
+                                        ),
+                                      ),
+                                  ],
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],
-                    ],
+                    ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
@@ -70,7 +107,7 @@ class _ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.fromLTRB(20, 22, 20, 13),
         child: Column(
           children: [
             ClipOval(
@@ -88,70 +125,102 @@ class _ProfileCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 2),
             const Text(
               'Flutter Developer',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             const Text(
-              'Passionate about creating user-friendly and engaing digital experiences.',
+              'Passionate about creating user-friendly and engaging digital experiences.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Color(0xFF4B5563)),
+              style: TextStyle(
+                color: Color(0xFF4B5563),
+                fontSize: 12,
+              ),
             ),
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: Divider(height: 1),
             ),
-            const Row(
-              children: [
-                Icon(Icons.mail, size: 18, color: Color(0xFF374151)),
-                SizedBox(width: 10),
-                Text('john.doe@example.com'),
-              ],
-            ),
-            const SizedBox(height: 10),
-            const Row(
-              children: [
-                Icon(Icons.phone, size: 18, color: Color(0xFF374151)),
-                SizedBox(width: 10),
-                Text('+123 456 7890'),
-              ],
-            ),
-            const SizedBox(height: 18),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0671DF),
-                      foregroundColor: Colors.white,
-                      minimumSize: const Size.fromHeight(40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 308),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Row(
+                        children: [
+                          Icon(Icons.mail, size: 18, color: Color(0xFF374151)),
+                          SizedBox(width: 10),
+                          Flexible(
+                            child: Text(
+                              'john.doe@example.com',
+                              style: TextStyle(fontSize: 12),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    child: const Text('Follow'),
+                      SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Icon(Icons.phone, size: 18, color: Color(0xFF374151)),
+                          SizedBox(width: 10),
+                          Text(
+                            '+123 456 7890',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF374151),
-                      side: const BorderSide(color: Color(0xFFD1D5DB)),
-                      minimumSize: const Size.fromHeight(40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+            const SizedBox(height: 8),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 260),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0671DF),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size.fromHeight(30),
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
+                        ),
                       ),
+                      child: const Text('Follow'),
                     ),
-                    child: const Text('Message'),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF374151),
+                        side: const BorderSide(color: Color(0xFFD1D5DB)),
+                        minimumSize: const Size.fromHeight(30),
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                      ),
+                      child: const Text('Message'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
